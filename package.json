@@ -1,0 +1,34 @@
+{
+  "name": "tuna-for-node",
+  "version": "0.1.0",
+  "description": "",
+  "main": "src/tuna.mjs",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "node src/downloadTuna.mjs",
+    "format:check": "prettier --check .",
+    "format:fix": "prettier --write .",
+    "lint:fix": "eslint --fix .",
+    "lint:check": "eslint ."
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "extract-zip": "^2.0.1",
+    "mkdirp": "^3.0.1"
+  },
+  "devDependencies": {
+    "eslint": "^9.0.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-config-standard": "^17.1.0",
+    "eslint-plugin-import": "^2.29.1",
+    "@eslint/eslintrc": "^3.0.2",
+    "eslint-plugin-n": "^17.2.1",
+    "eslint-plugin-promise": "^6.1.1",
+    "prettier": "^3.2.5"
+  }
+}

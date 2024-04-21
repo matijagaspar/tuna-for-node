@@ -35,7 +35,7 @@ It downloads the correct tuna release binary (based on the platform) from [Tuna 
 
 <a name="startTuna"></a>
 
-## startTuna ⇒ <code>Promise.&lt;void&gt;</code>
+## startTuna ⇒ <code>Promise&lt;void&gt;</code>
 
 Starts the tuna client.
 
@@ -49,11 +49,11 @@ Starts the tuna client.
 
 <a name="waitConnected"></a>
 
-## waitConnected ⇒ <code>Promise.&lt;string&gt;</code>
+## waitConnected ⇒ <code>Promise&lt;string&gt;</code>
 
 Awaits tuna client being connected.
 
-**Returns**: <code>Promise.&lt;string&gt;</code> - the current ip
+**Returns**: <code>Promise&lt;string&gt;</code> - the current ip
 
 | Param         | Type                 | Description                                                                                  |
 | ------------- | -------------------- | -------------------------------------------------------------------------------------------- |
@@ -62,7 +62,7 @@ Awaits tuna client being connected.
 
 <a name="stopTuna"></a>
 
-## stopTuna ⇒ <code>Promise.&lt;void&gt;</code>
+## stopTuna ⇒ <code>Promise&lt;void&gt;</code>
 
 Stops the tuna client.
 
@@ -75,3 +75,4 @@ Stops the tuna client.
 ## Improvments for the future
 
 - Ability to start multiple (currently the process is global, so only one at the time can be started). One of the limitations is config directory, currently at best I could do a global map per config directory. However looking at more general solution options
+- Handle all errors from the tuna output

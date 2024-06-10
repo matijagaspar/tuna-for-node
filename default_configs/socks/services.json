@@ -1,0 +1,7 @@
+[
+  {
+    "name": "socksproxy",
+    "tcp": [0],
+    "encryption": "xsalsa20-poly1305"
+  }
+]

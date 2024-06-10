@@ -1,0 +1,33 @@
+{
+  "beneficiaryAddr": "",
+  "listenTCP": 30010,
+  "listenUDP": 30011,
+  "dialTimeout": 10,
+  "udpTimeout": 60,
+  "claimInterval": 3600,
+  "subscriptionDuration": 40000,
+  "subscriptionFee": "0.00001",
+  "subscriptionReplaceTxPool": false,
+  "services": {
+    "socksproxy": {
+      "address": "127.0.0.1",
+      "price": "0.0002"
+    }
+  },
+  "reverse": false,
+  "reverseRandomPorts": true,
+  "reverseMaxPrice": "0.001",
+  "reverseNanoPayFee": "",
+  "minReverseNanoPayFee": "0.00001",
+  "reverseNanoPayFeeRatio": 0.1,
+  "reverseIPFilter": {
+    "allow": [
+      {"countryCode": ""}
+    ],
+    "disallow": [
+      {"countryCode": ""}
+    ]
+  },
+  "downloadGeoDB": true,
+  "geoDBPath": "."
+}

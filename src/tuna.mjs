@@ -9,7 +9,8 @@ import {
 import readline from 'node:readline'
 import EventEmitter from 'node:events'
 import { COMMANDS, AWAIT_TUNA_READY_TIMEOUT } from './constants.mjs'
-export * from './constants.mjs'
+// export * from './constants.mjs'
+// export * from './tunaProxy.mjs'
 
 class TunaEmmiter extends EventEmitter {}
 const tunaEmmiter = new TunaEmmiter()

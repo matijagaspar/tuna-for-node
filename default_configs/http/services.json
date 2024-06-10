@@ -1,0 +1,7 @@
+[
+  {
+    "name": "httpproxy",
+    "tcp": [0],
+    "encryption": "xsalsa20-poly1305"
+  }
+]

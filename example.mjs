@@ -1,8 +1,19 @@
-import { startTuna, waitConnected } from './src/tuna.mjs'
+import { startTunaProxy } from './src/index.mjs'
 
 const start = Date.now()
-await startTuna('entry', new URL('config/', import.meta.url), () => {}, false, true)
+const proxyHandler = await startTunaProxy({
+    noWallet: true,
+})
+
+console.log(
+    `Exit IP: ${proxyHandler.currentIp}\nProxy listening on port: ${proxyHandler.listenPort}`
+)
+
+proxyHandler.once('exit', () => {
+    console.log('Tuna exited')
+})
 const end = Date.now()
 console.log('Tuna started', end - start, 'ms')
-const ip = await waitConnected(true)
-console.log('Tuna connected to', ip)
+
+proxyHandler.stopTuna()
+

@@ -66,6 +66,13 @@ Awaits tuna client being connected.
 
 Stops the tuna client.
 
+<a name="startTunaProxy"></a>
+
+## startTunaProxy ⇒ <code>Promise&lt;TunaHandler&gt;</code>
+
+Starts a tuna proxy (http or socks5), this mode allows starting multiple proxies and there is no interference between each process. Port is assigned randomly by OS, and one can retrieve it from the return value `listenPort`
+
+
 ## Known issues:
 
 1. This package relies on reading the log output stream from tuna to determine if connected and to what ip.
@@ -76,3 +83,5 @@ Stops the tuna client.
 
 - Ability to start multiple (currently the process is global, so only one at the time can be started). One of the limitations is config directory, currently at best I could do a global map per config directory. However looking at more general solution options
 - Handle all errors from the tuna output
+- Better docs for startTunaProxy
+- implement similar solution for startTuna

@@ -3,3 +3,4 @@ bin
 cache
 config
 .vscode
+default_configs/*/wallet*

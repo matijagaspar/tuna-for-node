@@ -1,12 +1,12 @@
 {
   "name": "tuna-for-node",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "Nodejs wrapper around NKN Tuna",
   "author": "Matija Gaspar <matija.gaspar@gmail.com>",
   "license": "MIT",
   "repository": "https://github.com/matijagaspar/tuna-for-node",
   "homepage": "https://github.com/matijagaspar/tuna-for-node#README",
-  "main": "src/tuna.mjs",
+  "main": "src/index.mjs",
   "scripts": {
     "postinstall": "node src/downloadTuna.mjs",
     "format:check": "prettier --check .",

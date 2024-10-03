@@ -23,7 +23,14 @@ export default [
       'n/prefer-node-protocol': 'error',
       'n/no-unsupported-features/node-builtins': 'off',
     },
-    ignores: ['**/bin/**', '**/dist/**', '**/cache/**', '**/node_modules/**', '**/config/**'],
+    ignores: [
+      '**/bin/**',
+      '**/dist/**',
+      '**/cache/**',
+      '**/node_modules/**',
+      '**/config/**',
+      '**/default_configs/**',
+    ],
   },
   eslintConfigPrettier,
 ]

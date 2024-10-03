@@ -24,9 +24,9 @@ class TunaProxyEmitter extends EventEmitter {
     this.currentIp = null
   }
 
-  async getProxyInfo(){
-    if(!this.proxyUrl){
-      await new Promise((resolve) => {  
+  async getProxyInfo() {
+    if (!this.proxyUrl) {
+      await new Promise((resolve) => {
         this.once('listening', (port) => {
           resolve(port)
         })
@@ -90,8 +90,15 @@ export const startTunaProxy = async (options = globalProxyOptions) => {
 
   const localOptions = {}
   Object.assign(localOptions, globalProxyOptions, options || {})
-  const { validatePorts, walletFile, walletPasswordFile, configDir, proxyType, noWallet, waitStart } =
-    localOptions
+  const {
+    validatePorts,
+    walletFile,
+    walletPasswordFile,
+    configDir,
+    proxyType,
+    noWallet,
+    waitStart,
+  } = localOptions
   const command = COMMANDS.ENTRY
 
   if (DEFAULT_CONFIG_FOLDERS[proxyType] === undefined) {
@@ -152,8 +159,7 @@ export const startTunaProxy = async (options = globalProxyOptions) => {
       tunaProxyEmitter.emit('disconnected')
     }
     const listenMatch = data.match(/Serving .+? on ([^\s]+) tcp port \[(\d+)\]/)
-    if(listenMatch){
-
+    if (listenMatch) {
       tunaProxyEmitter.listenAddress = listenMatch[1]
       tunaProxyEmitter.listenPort = parseInt(listenMatch[2])
       tunaProxyEmitter.proxyUrl = `${proxyType}://${listenMatch[1]}:${tunaProxyEmitter.listenPort}`
@@ -171,8 +177,7 @@ export const startTunaProxy = async (options = globalProxyOptions) => {
     tunaProxyEmitter.removeAllListeners()
   })
 
-  if(waitStart){
-
+  if (waitStart) {
     let startCheckPromises = [
       new Promise((resolve, reject) => {
         const timeout = setTimeout(() => {
@@ -196,7 +201,7 @@ export const startTunaProxy = async (options = globalProxyOptions) => {
             clearTimeout(timeout)
             resolve(port)
           })
-        } ),
+        }),
       ]
     }
 

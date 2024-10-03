@@ -5,7 +5,7 @@ import extractZip from 'extract-zip'
 import { fileURLToPath } from 'node:url'
 import { mkdirp } from 'mkdirp'
 import { getTunaPlatformFilename } from './utils.mjs'
-import { TUNA_RELEASE_ID, SETTINGS_FILES } from './constants.mjs'
+import { TUNA_RELEASE_ID, SETTINGS_FILES, OPTIONAL_SETTINGS_FILES } from './constants.mjs'
 
 const getTunaDownloadLink = async (releaseFilename, releaseId = TUNA_RELEASE_ID) => {
   // 151880742
@@ -66,7 +66,9 @@ const downloadTuna = async () => {
   )
 
   Object.values(SETTINGS_FILES).forEach((file) => {
-    renameSync(new URL(file, finalExtractionDir), new URL(file, tunaBinDir))
+    if (!OPTIONAL_SETTINGS_FILES.includes(file)) {
+      renameSync(new URL(file, finalExtractionDir), new URL(file, tunaBinDir))
+    }
   })
 
   rmSync(cacheDir, { recursive: true })

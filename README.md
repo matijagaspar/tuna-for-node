@@ -72,7 +72,6 @@ Stops the tuna client.
 
 Starts a tuna proxy (http or socks5), this mode allows starting multiple proxies and there is no interference between each process. Port is assigned randomly by OS, and one can retrieve it from the return value `listenPort`
 
-
 ## Known issues:
 
 1. This package relies on reading the log output stream from tuna to determine if connected and to what ip.

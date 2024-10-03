@@ -2,3 +2,4 @@ bin
 config
 pnpm-lock.yaml
 .vscode
+default_configs

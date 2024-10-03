@@ -72,7 +72,7 @@ export async function extractPortsFromConfig(command, configDir) {
     configFile = 'config.exit.json'
   }
   const config = JSON.parse(
-    await fsAsync.readFile( path.join(configDir,configFile), { encoding: 'utf-8' }),
+    await fsAsync.readFile(path.join(configDir, configFile), { encoding: 'utf-8' }),
   )
   const services = JSON.parse(
     await fsAsync.readFile(path.join(configDir, 'services.json'), { encoding: 'utf-8' }),
@@ -166,7 +166,7 @@ export const validateConfigDir = async (configDir, type, createDefaults = false)
   try {
     const commandEntry = Object.entries(COMMANDS).find(([_, value]) => value === type)
 
-    if(!commandEntry){
+    if (!commandEntry) {
       throw new Error(`Invalid type ${type}`)
     }
     typeKey = commandEntry[0]
@@ -193,22 +193,18 @@ export const validateConfigDir = async (configDir, type, createDefaults = false)
       if (e.code === 'ENOENT' && createDefaults) {
         fsAsync.copyFile(new URL(`../${BIN_DIR}${file}`, import.meta.url), new URL(file, configDir))
       } else {
-        throw new ConfigError(
-          CONFIG_ERROR_CODES.CONFIG_CANNOT_READ,
-          path.join(configDir, file),
-        )
+        throw new ConfigError(CONFIG_ERROR_CODES.CONFIG_CANNOT_READ, path.join(configDir, file))
       }
     }
   }
 }
 
 /**
- * 
- * @param {string} directory 
+ *
+ * @param {string} directory
  * @returns {Promise<[walletPath: string, walletPasswordPath: string]>} walletFiles
  */
 export const checkWalletFilesDirectory = async (directory) => {
-
   let configDirS
   try {
     configDirS = await fsAsync.stat(directory)
@@ -224,7 +220,6 @@ export const checkWalletFilesDirectory = async (directory) => {
     throw new ConfigError(CONFIG_ERROR_CODES.CONFIG_CANNOT_READ, directory)
   }
 
-
   const requiredFiles = [SETTINGS_FILES.WALLET, SETTINGS_FILES.WALLET]
 
   const walletFiles = []
@@ -234,24 +229,23 @@ export const checkWalletFilesDirectory = async (directory) => {
       await fsAsync.access(filePath, fsAsync.constants.R_OK)
       walletFiles.push(filePath)
     } catch (e) {
-        throw new ConfigError(
-          CONFIG_ERROR_CODES.CONFIG_CANNOT_READ,
-          fileURLToPath(new URL(file, directory)),
-        )
+      throw new ConfigError(
+        CONFIG_ERROR_CODES.CONFIG_CANNOT_READ,
+        fileURLToPath(new URL(file, directory)),
+      )
     }
   }
 
   return walletFiles
-
 }
 
 export const checkFile = async (filePath) => {
-  try{
+  try {
     await fsAsync.access(filePath, fsAsync.constants.R_OK)
-  }catch(e){
-    if(e.code === 'ENOENT'){
+  } catch (e) {
+    if (e.code === 'ENOENT') {
       throw new ConfigError(CONFIG_ERROR_CODES.CONFIG_MISSING_FILE, filePath)
-    }else{
+    } else {
       throw e
     }
   }

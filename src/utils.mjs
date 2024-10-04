@@ -1,7 +1,6 @@
 import os from 'node:os'
 import fsAsync from 'node:fs/promises'
 import net from 'node:net'
-import { fileURLToPath } from 'node:url'
 import path from 'node:path'
 
 import { SETTINGS_FILES, CONFIG_ERROR_CODES, BIN_DIR, COMMANDS } from './constants.mjs'
@@ -220,18 +219,18 @@ export const checkWalletFilesDirectory = async (directory) => {
     throw new ConfigError(CONFIG_ERROR_CODES.CONFIG_CANNOT_READ, directory)
   }
 
-  const requiredFiles = [SETTINGS_FILES.WALLET, SETTINGS_FILES.WALLET]
+  const requiredFiles = [SETTINGS_FILES.WALLET, SETTINGS_FILES.WALLET_PASSWORD]
 
   const walletFiles = []
   for (const file of requiredFiles) {
     try {
-      const filePath = fileURLToPath(new URL(file, directory))
+      const filePath = path.join(directory, file) // fileURLToPath(new URL(file, directory))
       await fsAsync.access(filePath, fsAsync.constants.R_OK)
       walletFiles.push(filePath)
     } catch (e) {
       throw new ConfigError(
         CONFIG_ERROR_CODES.CONFIG_CANNOT_READ,
-        fileURLToPath(new URL(file, directory)),
+        path.join(directory, file),
       )
     }
   }

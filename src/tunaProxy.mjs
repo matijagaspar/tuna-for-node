@@ -124,7 +124,8 @@ export const startTunaProxy = async (options = globalProxyOptions) => {
       if (!walletPasswordFile) {
         throw new ConfigError(CONFIG_ERROR_CODES.CONFIG_MISSING_FILE, 'walletPasswordFile')
       } else {
-        walletFiles = [await checkFile(walletFile), await checkFile(walletPasswordFile)]
+        await Promise.all([walletFile, walletPasswordFile].map(checkFile))
+        walletFiles = [walletFile, walletPasswordFile]
       }
     } else {
       walletFiles = await checkWalletFilesDirectory(configDir)
@@ -147,6 +148,7 @@ export const startTunaProxy = async (options = globalProxyOptions) => {
   })
 
   rl.on('line', (data) => {
+    // console.log(data)
     const matchConnect = data.match(/Connected to TCP at (\d+\.\d+\.\d+\.\d+)/)
     if (matchConnect) {
       tunaProxyEmitter.tunaConnected = true

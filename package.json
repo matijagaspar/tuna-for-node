@@ -1,6 +1,6 @@
 {
   "name": "tuna-for-node",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "Nodejs wrapper around NKN Tuna",
   "author": "Matija Gaspar <matija.gaspar@gmail.com>",
   "license": "MIT",
